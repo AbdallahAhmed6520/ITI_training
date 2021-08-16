@@ -9,4 +9,4 @@ do
   }
   while(isNaN(birthyear)&&birthyear>2010)
 
-  document.write("Name :",Name,"<br> Birthyear : ",birthyear,"<br> Age = ",2021-birthyear)
+document.write("Name :", Name, "<br> Birthyear : ", birthyear, "<br> Age = ", 2021 - birthyear);
