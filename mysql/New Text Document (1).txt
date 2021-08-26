@@ -1,0 +1,39 @@
+CREATE DATABASE World;
+
+CREATE TABLE City (
+    ID int NOT NULL PRIMARY KEY,
+    Name varchar(35) NOT NULL,
+    CountryCode varchar(3) NOT NULL,
+    District varchar(20) NOT NULL,
+    Population int DEFAULT 0,
+    CONSTRAINT FK_City_Country1 FOREIGN KEY (CountryCode)
+    REFERENCES country(Code)
+);
+
+
+CREATE TABLE Country( 
+ Code varchar(3) NOT NULL PRIMARY KEY, 
+ Name char(52) NOT NULL ,
+ Continent varchar(50)  DEFAULT 'Asia'  ,
+ Region char(26) NOT NULL ,
+ SurfaceArea float DEFAULT 0.00,
+ IndepYear smallint DEFAULT NULL ,
+ Population int  NOT NULL  DEFAULT 0,
+ LifeExpectancy float DEFAULT NULL,
+ GNP float DEFAULT NULL,
+ GNPOld float DEFAULT NULL,
+ LocalName char(45) NOT NULL,
+ GovernmentForm char(45) NOT NULL,
+ HeadOfState char(60) DEFAULT NULL,
+ Capital int DEFAULT NULL,
+ Code2 char(2) NOT NULL);
+
+CREATE TABLE CountryLanguage (
+    id int PRIMARY KEY;
+    CountryCode char(3) NOT NULL ,
+    Language char(30) NOT NULL,
+    IsOfficial bit DEFAULT false,
+    Percentage float DEFAULT 0.0,
+    CONSTRAINT countryLanguage_ibfk_1 FOREIGN KEY (CountryCode)
+    REFERENCES country(Code)
+);	

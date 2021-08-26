@@ -1,0 +1,22 @@
+SELECT * FROM country;
+SELECT DISTINCT Language FROM countrylanguage ;
+SELECT name FROM country WHERE continent="africa";
+SELECT name FROM city WHERE Population > 2000000;
+SELECT name FROM country WHERE IndepYear BETWEEN 1920 AND 1990;
+SELECT name FROM country WHERE IndepYear IS NULL;
+SELECT name FROM country WHERE GovernmentForm="Republic";
+SELECT name FROM country WHERE Population>100000000 AND continent="asia";
+SELECT CountryCode FROM countrylanguage WHERE Language="Spanish" AND IsOfficial=1 ;
+
+
+SELECT country.name,city.Name AS city_name FROM country INNER JOIN city ON country.code = city.CountryCode WHERE country.name = "Egypt";
+SELECT country.name,city.Name AS city_name FROM country INNER JOIN city ON country.code = city.CountryCode WHERE city.Population>5000000;
+SELECT country.name FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.CountryCode WHERE countrylanguage.Language="Dutch" AND countrylanguage.IsOfficial=0 ;
+SELECT country.name,countrylanguage.Language FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.CountryCode WHERE countrylanguage.IsOfficial=1 ;
+SELECT A.Name AS CustomerName1, B.Name AS CustomerName2 FROM city A, city B WHERE A.ID <> B.ID AND A.District = B.District;
+SELECT COUNT(code), name FROM country WHERE continent="africa" GROUP BY name ;
+SELECT country.name ,COUNT(countrylanguage.Language) FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.CountryCode WHERE countrylanguage.IsOfficial=0 GROUP BY name  ;
+SELECT country.name FROM country INNER JOIN countrylanguage ON country.code = countrylanguage.CountryCode GROUP BY name HAVING COUNT(country.Name)>1;
+SELECT name FROM Country WHERE (SELECT MIN(Population) FROM country) = country.Population;
+SELECT country.name,city.Population FROM country INNER JOIN city ON country.code = city.CountryCode WHERE city.Population>100000000;
+SELECT country.name FROM country INNER JOIN city ON country.code = city.CountryCode WHERE (SELECT MAX(city.Population) FROM country INNER JOIN city ON country.code = city.CountryCode) = city.Population
